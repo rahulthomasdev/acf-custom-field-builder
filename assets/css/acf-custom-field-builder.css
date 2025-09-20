@@ -1,0 +1,60 @@
+/**
+ * Included when fields of this type are rendered for editing by publishers.
+ */
+.acf-field-repeater-v1-title-subititle-image .setting-font-size {
+  color: green;
+}
+
+.wp-editor-wrap {
+  margin-bottom: 1rem;
+}
+
+.image-container {
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  background-color: #f7f7f7;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+}
+
+.image-preview {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.button.remove-image,
+.button.remove-field {
+  border: 1px solid red;
+  background-color: #f7f7f7;
+  color: red;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+}
+
+.button.remove-image:hover {
+  border: 1px solid red;
+  background-color: red;
+  color: #f7f7f7;
+}
+
+.quicktags-toolbar {
+  margin-bottom: 1rem;
+}
+
+.image-preview-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.acf-field-builder-form {
+  padding: 1rem;
+  background: #fff;
+  border-radius: 0.5rem;
+}
+.acf-field-builder-actions{
+  display: flex;
+  gap: 8px;
+  margin-top: 1rem;
+  margin-left: 2.25rem;
+}
+.field-row{
+  margin-bottom: 1rem;
+}
