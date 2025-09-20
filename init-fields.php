@@ -1,13 +1,27 @@
 <?php
 
 /**
+ * Get ACF Field Builder groups (cached).
+ */
+function get_acf_field_builder_groups()
+{
+    static $groups = null;
+
+    if ($groups === null) {
+        $groups = get_option('acf_field_builder_groups', []);
+    }
+
+    return $groups;
+}
+
+
+/**
  * Registration logic for the new ACF field type.
  */
 
 if (! defined('ABSPATH')) {
     exit;
 }
-
 add_action('init', 'init_acf_custom_field_builder_dynamic');
 
 /**
@@ -21,20 +35,17 @@ function init_acf_custom_field_builder_dynamic()
 
     require_once __DIR__ . '/acf-custom-field-builder-dynamic-field-builder.php';
 
-    $fieldDefinitions = get_option('acf_field_builder_groups') ?? [];
+    $fieldDefinitions = get_acf_field_builder_groups();
 
     foreach ($fieldDefinitions as $key => $fieldDefinition) {
         $className = $fieldDefinition['name'];
-        // Make sure class name is valid PHP class name
         $className = preg_replace('/[^A-Za-z0-9_]/', '_', $className);
         acf_register_field_type($className);
     }
 }
 
 add_action('admin_enqueue_scripts', function () {
-    
-    $fieldDefinitions = get_option('acf_field_builder_groups', true) ?? [];
-
+    $fieldDefinitions = get_acf_field_builder_groups();
     $url = defined('ACF_FIELD_BUILDER_URL') ? ACF_FIELD_BUILDER_URL : plugin_dir_url(__FILE__);
     $version = defined('ACF_FIELD_BUILDER_VERSION') ? ACF_FIELD_BUILDER_VERSION : '1.0';
     wp_enqueue_media();

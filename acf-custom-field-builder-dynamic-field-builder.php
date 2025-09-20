@@ -9,6 +9,7 @@ foreach ($fieldDefinitions as $fieldDefinition) {
     $fieldsExport = var_export($fields, true); // Export fields array to string
     $fieldDefinitions = var_export($fieldDefinitions, true);
 
+    // Build eval code to register fields dynamically
     $evalCode = "
     if (!defined('ABSPATH')) exit;
 
@@ -24,7 +25,7 @@ foreach ($fieldDefinitions as $fieldDefinition) {
             \$this->name = '$className';
             \$this->label = __('$className', 'acf-custom-field-builder');
             \$this->category = 'basic';
-            \$this->preview_image = plugin_dir_url(__FILE__) . '/assets/images/field-preview-custom.png';
+            \$this->preview_image = ACF_FIELD_BUILDER_URL . '/assets/images/field-preview-custom.png';
             \$this->description = __('Custom ACF field', 'acf-custom-field-builder');
             \$this->env = array('url' => plugin_dir_url(__FILE__), 'version' => '1.0');
             parent::__construct();
